@@ -1,7 +1,8 @@
+var gotSettings = false;
 /***************************************
  ******* Verkrijg instellingen   *******
  ***************************************/
-function refreshSettings() {
+function refreshSettings(boeveninterval) {
     // Builds a Fusion Tables SQL query and hands the result to dataHandler()
 	var queryUrlHead = 'https://www.googleapis.com/fusiontables/v1/query?sql=';
 	//var queryUrlHead = 'http://www.google.com/fusiontables/api/query?sql=';
@@ -13,10 +14,12 @@ function refreshSettings() {
     
     $.getJSON(queryurl, function(data) {
     	window.localStorage.setItem("setting_gameID", 		data.rows[0][0]);
-    	window.localStorage.setItem("setting_interval", 	data.rows[0][1]);
-    	window.localStorage.setItem("setting_visibleTime", 	data.rows[0][2]);
+    	var interval = data.rows[0][1];
+    	var visibleTime = data.rows[0][2];
     	window.localStorage.setItem("setting_rowID",        data.rows[0][3]);
+    	gotSettings = true;
     	writePlayerSettingsFile();
+    	boeveninterval(visibleTime, interval);
     }).error(function(jqXHR, textStatus, errorThrown) {
         console.log("error " + textStatus);
         console.log("incoming Text " + jqXHR.responseText);
@@ -27,6 +30,9 @@ function refreshSettings() {
  ******* De kaart pagina (MAP)   *******
  ***************************************/
 var griepummap;
+var agentsinterval = false;
+var boeveninterval = false;
+
 $('#page-map').live("pageshow", function() {
 	var spectator = false;
 	// Check of playerID is ingesteld, vraag anders om ID
@@ -48,9 +54,27 @@ $('#page-map').live("pageshow", function() {
 	}
 	
 	if(spectator) {
+		gotSettings = true;
 		alert("Je speelt dit spel nu in bekijkmodus, je gegevens worden dus niet bijgewerkt! Je kunt ook geen boeven zien.");
 	}
-	if(!spectator) refreshSettings();
+	
+	/**
+	 * Refresh de settings en set het refresh interval voor de Fusion Table layer voor de boeven
+	 */
+	if(!spectator) refreshSettings(function setBoevenRefreshIntervals(visibleTime, interval) {
+		if(!boeveninterval) {
+			setInterval(function(){
+				if(boeven != null) boeven.setMap(null);
+				boeven = createFusionTableLayer(boeven, "'type' = 1");
+				boeven.setMap(griepummap);
+				setTimeout(function(){
+					boeven.setMap(null);
+				}, visibleTime * 1000);
+			}, interval * 1000 + visibleTime * 1000);
+			boeveninterval = true;
+		}
+	});
+	
 	var agents;
 	var boeven;
 	var myposition = new google.maps.LatLng(52.260908,6.793399); // Standaard is Hengelo
@@ -71,25 +95,16 @@ $('#page-map').live("pageshow", function() {
 			griepummap = this.get('map');
 		}
 	});
-    
-	// Set het refresh interval voor de Fusion Table layer voor de boeven
-	if(!spectator) {
-		setInterval(function(){
-			if(boeven != null) boeven.setMap(null);
-			boeven = createFusionTableLayer(boeven, "'type' = 1");
-			boeven.setMap(griepummap);
-			setTimeout(function(){
-				boeven.setMap(null);
-			}, window.localStorage.getItem("setting_visibleTime") * 1000);
-		}, window.localStorage.getItem("setting_interval") * 1000 + window.localStorage.getItem("setting_visibleTime") * 1000);
-	}
 	
 	// 	Set het refresh interval voor de Fusion Table layer voor de agenten
-	setInterval(function(){
-		if(agents != null) agents.setMap(null);
-		agents = createFusionTableLayer(agents, "'type' = 0");
-		agents.setMap(griepummap);
-	}, 10000);
+	if(!agentsinterval) {
+		setInterval(function(){
+			if(agents != null) agents.setMap(null);
+			agents = createFusionTableLayer(agents, "'type' = 0");
+			agents.setMap(griepummap);
+		}, 10000);
+		agentsinterval = true;
+	}
 });
 $('#map_center').bind('click', function(event, ui) {
 	navigator.geolocation.getCurrentPosition(
@@ -101,6 +116,7 @@ $('#map_center').bind('click', function(event, ui) {
 		}
 	);
 });
+
 
 /***************************************
  ******* File handling functies  *******
