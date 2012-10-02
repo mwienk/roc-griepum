@@ -26,6 +26,7 @@ function refreshSettings() {
 /***************************************
  ******* De kaart pagina (MAP)   *******
  ***************************************/
+var griepummap;
 $('#page-map').live("pageshow", function() {
 	var spectator = false;
 	// Check of playerID is ingesteld, vraag anders om ID
@@ -50,7 +51,6 @@ $('#page-map').live("pageshow", function() {
 		alert("Je speelt dit spel nu in bekijkmodus, je gegevens worden dus niet bijgewerkt! Je kunt ook geen boeven zien.");
 	}
 	if(!spectator) refreshSettings();
-	var griepummap;
 	var agents;
 	var boeven;
 	var myposition = new google.maps.LatLng(52.260908,6.793399); // Standaard is Hengelo
@@ -90,6 +90,16 @@ $('#page-map').live("pageshow", function() {
 		agents = createFusionTableLayer(agents, "'type' = 0");
 		agents.setMap(griepummap);
 	}, 10000);
+});
+$('#map_center').bind('click', function(event, ui) {
+	navigator.geolocation.getCurrentPosition(
+		function(position) {
+			griepummap.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
+		},
+		function() {
+			alert('Je huidige locatie is onbekend, centreren is dus niet mogelijk.');
+		}
+	);
 });
 
 /***************************************
@@ -156,6 +166,7 @@ $("#deletePlayer").bind("click", function(event, ui) {
  * @returns
  */
 function createFusionTableLayer(layer, whereclause){
+	console.log("Layer refreshing");
     layer = new google.maps.FusionTablesLayer({
         query: 
         {
