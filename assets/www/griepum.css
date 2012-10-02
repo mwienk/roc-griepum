@@ -1,0 +1,15 @@
+/*set the content to be full-width and height except it doesn't overlap the header or footer*/
+#map-canvas, #page-map .ui-content {
+    position : absolute;
+    top      : 40px; /*Header height*/
+    right    : 0px;
+    bottom   : 0px; /*Footer height*/
+    left     : 0px;
+}
+#page-home {
+	background: url("img/bg.jpg") no-repeat scroll center 32px #fff;
+}
+#settings-table th,
+#settings-table td {
+	text-align: left;
+}

@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html manifest="cache.appcache">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<title>Griep'um</title>
+
+<!-- Styles -->
+<link rel="stylesheet"
+	href="js/jquery.mobile/jquery.mobile-1.1.0.min.css" />
+<link rel="stylesheet" href="griepum.css" />
+
+</head>
+<body>
+	<div id="throbber"></div>
+	<div data-role="page" id="page-home">
+		<div data-role="header">
+			<a class="ui-btn-left" id="exit" onClick="javascript:device.exitApp()">Quit</a>
+			<h1>Griep'um</h1>
+		</div>
+		<!-- /header -->
+
+		<div data-role="content" style="padding-top: 280px;">
+			<ul data-role="listview" data-inset="true">
+				<li><a href="#page-map">Speel spel</a></li>
+				<li><a href="#page-settings">Instellingen</a></li>
+				<li><a href="#page-info">Info</a></li>
+			</ul>
+		</div>
+		<!-- /content -->
+
+	</div>
+	<!-- /page -->
+	
+	<div data-role="page" id="page-settings">
+		<div data-role="header">
+			<a data-rel="back">Terug</a>
+			<h1>Instellingen</h1>			
+		</div>
+		<!--  /header -->
+		
+		<div data-role="content">
+			<div id="playerSettingsMessage"></div>
+			<a id="deletePlayer" data-role="button" data-icon="delete">Reset instellingen</a> 
+		</div>
+		<!-- /content	 -->
+	</div>
+	<!--  /page -->
+	
+	<div data-role="page" id="page-map">
+		<div data-role="header">
+			<a data-rel="back">Terug</a>
+			<h1>Kaart</h1>
+		</div>
+		<!-- /header -->
+		<div data-role="content" id="map_canvas"></div>
+		<!-- /content -->
+
+	</div>
+	<!-- /page	 -->
+
+	<div data-role="page" id="page-info">
+		<div data-role="header">
+			<a data-rel="back">Terug</a>
+			<h1>Over Griep'um</h1>
+		</div>
+		<!-- /header -->
+
+		<div data-role="content">
+			<h3>Griep'um</h3>
+			<p><strong>Versie</strong> 1.0-beta3</p>
+			<p>Griep'um is een applicatie bedoeld ter promotie voor de opleiding GIS</p>
+			<h3>Opdrachtgever</h3>
+			<p>ROC van Twente<br /> <a href="http://www.rocvantwente.nl">www.rocvantwente.nl</a></p>
+			<h3>Uitvoerder</h3>
+			<p>Wienk IT<br /><a href="http://www.wienkit.nl">www.wienkit.nl</a></p>
+			<h3>Datum</h3>
+			<p>02/10/2012</p>
+		</div>
+		<!-- /content	 -->
+
+	</div>
+	<!-- /page	 -->
+	<!-- Scripts -->
+	<script type="text/javascript" charset="utf-8"
+		src="js/cordova-2.0.0.js" async="async"></script>
+	<script type="text/javascript" charset="utf-8" src="js/lib.js"
+		async="async"></script>
+	<script type="text/javascript" charset="utf-8"
+		src="js/jquery.mobile/jquery-1.7.2.min" async="async"></script>
+	<script type="text/javascript" charset="utf-8"
+		src="js/jquery.mobile/jquery.mobile-1.1.0.min.js" async="async"></script>
+	<script type="text/javascript" charset="utf-8"
+		src="http://maps.googleapis.com/maps/api/js?sensor=true">
+	</script>
+	<script type="text/javascript" charset="utf-8"
+		src="js/jquery.mobile/map/min/jquery.ui.map.min.js" async="async"></script>
+	<script type="text/javascript" charset="utf-8"
+		src="js/jquery.mobile/map/min/jquery.ui.map.overlays.min.js"
+		async="async"></script>
+	<script type="text/javascript" charset="utf-8" src="js/griepum.js"
+		async="async"></script>
+</body>
+</html>
