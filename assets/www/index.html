@@ -9,11 +9,9 @@
 <link rel="stylesheet" href="js/jquery.mobile/jquery.mobile-1.1.0.min.css" />
 <link rel="stylesheet" href="griepum.css" />
 
-<script type="text/javascript" charset="utf-8" src="js/cordova-2.0.0.js"></script>
-z
-
 </head>
 <body>
+	<div id="throbber"></div>
 	<div data-role="page" id="page-home">
 		<div data-role="header">
 			<a class="ui-btn-left" id="exit" onClick="javascript:device.exitApp()">Quit</a>
@@ -78,8 +76,8 @@ z
 				<img src="img/logo_roc.jpg" style="max-width: 460px;"/>
 				<img src="img/logo_pioneering.jpg" style="max-width: 400px;" />
 			</div>
-			<p><strong>Datum: </strong>6/11/2012</p>
-			<p><strong>Versie: </strong>1.0</p>
+			<p><strong>Datum: </strong>22/10/2012</p>
+			<p><strong>Versie: </strong>1.0-beta4</p>
 			<p>Deze applicatie is ontwikkeld door <a href="http://www.wienkit.nl">Wienk IT</a></p>
 		</div>
 		<!-- /content	 -->
@@ -87,6 +85,8 @@ z
 	</div>
 	<!-- /page	 -->
 	<!-- Scripts -->
+	<script type="text/javascript" charset="utf-8"
+		src="js/cordova-2.0.0.js" async="async"></script>
 	<script type="text/javascript" charset="utf-8" src="js/lib.js"
 		async="async"></script>
 	<script type="text/javascript" charset="utf-8"
