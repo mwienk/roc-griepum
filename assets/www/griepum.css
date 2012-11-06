@@ -9,6 +9,17 @@
 #page-home {
 	background: url("img/bg.jpg") no-repeat scroll center 32px #fff;
 }
+#page-info #images {
+	background-color: #fff;
+	padding: 10px;
+	border: 5px solid #ccc;
+	text-align: center;	
+}
+#page-info #images img {
+	margin: 5px;
+	vertical-align: middle;
+    width: 100%;
+}
 #settings-table th,
 #settings-table td {
 	text-align: left;

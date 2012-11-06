@@ -16,7 +16,8 @@
 
 	<application android:icon="@drawable/ic_launcher"
 		android:label="@string/app_name" android:theme="@style/AppTheme">
-		<activity android:name="nl.wienkit.roc_griepum.GriepumActivity" android:label="@string/title_activity_griepum">
+		<activity android:name="nl.wienkit.roc_griepum.GriepumActivity" android:label="@string/title_activity_griepum"
+				  android:configChanges="orientation|screenSize|keyboardHidden">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 

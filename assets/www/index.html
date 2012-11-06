@@ -6,13 +6,14 @@
 <title>Griep'um</title>
 
 <!-- Styles -->
-<link rel="stylesheet"
-	href="js/jquery.mobile/jquery.mobile-1.1.0.min.css" />
+<link rel="stylesheet" href="js/jquery.mobile/jquery.mobile-1.1.0.min.css" />
 <link rel="stylesheet" href="griepum.css" />
+
+<script type="text/javascript" charset="utf-8" src="js/cordova-2.0.0.js"></script>
+z
 
 </head>
 <body>
-	<div id="throbber"></div>
 	<div data-role="page" id="page-home">
 		<div data-role="header">
 			<a class="ui-btn-left" id="exit" onClick="javascript:device.exitApp()">Quit</a>
@@ -69,22 +70,23 @@
 
 		<div data-role="content">
 			<h3>Griep'um</h3>
-			<p><strong>Versie</strong> 1.0-beta3</p>
-			<p>Griep'um is een applicatie bedoeld ter promotie voor de opleiding GIS</p>
-			<h3>Opdrachtgever</h3>
-			<p>ROC van Twente<br /> <a href="http://www.rocvantwente.nl">www.rocvantwente.nl</a></p>
-			<h3>Uitvoerder</h3>
-			<p>Wienk IT<br /><a href="http://www.wienkit.nl">www.wienkit.nl</a></p>
-			<h3>Datum</h3>
-			<p>02/10/2012</p>
+			<p>Dit spel is ontwikkeld vanuit de werkplaats “Innovatieve toepassingen in de GWW”
+			   van de stichting Pioneering en wil jongeren interesseren voor GIS toepassingen.
+			   Voor informatie kan contact opgenomen worden met dhr. G.A. Nijland van het ROC
+			   van Twente, tel. 074-8525376 of per email naar <a href="mailto:gnijland@rocvantwente.nl">gnijland@rocvantwente.nl</a></p>
+			<div id="images">
+				<img src="img/logo_roc.jpg" style="max-width: 460px;"/>
+				<img src="img/logo_pioneering.jpg" style="max-width: 400px;" />
+			</div>
+			<p><strong>Datum: </strong>22/10/2012</p>
+			<p><strong>Versie: </strong>1.0-beta4</p>
+			<p>Deze applicatie is ontwikkeld door <a href="http://www.wienkit.nl">Wienk IT</a></p>
 		</div>
 		<!-- /content	 -->
 
 	</div>
 	<!-- /page	 -->
 	<!-- Scripts -->
-	<script type="text/javascript" charset="utf-8"
-		src="js/cordova-2.0.0.js" async="async"></script>
 	<script type="text/javascript" charset="utf-8" src="js/lib.js"
 		async="async"></script>
 	<script type="text/javascript" charset="utf-8"
