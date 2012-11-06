@@ -16,6 +16,8 @@ function refreshSettings(boeveninterval) {
     	window.localStorage.setItem("setting_gameID", 		data.rows[0][0]);
     	var interval = data.rows[0][1];
     	var visibleTime = data.rows[0][2];
+    	window.localStorage.setItem("setting_interval",     interval);
+    	window.localStorage.setItem("setting_visibleTime",  visibleTime);
     	window.localStorage.setItem("setting_rowID",        data.rows[0][3]);
     	gotSettings = true;
     	writePlayerSettingsFile();
